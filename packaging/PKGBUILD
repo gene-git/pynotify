@@ -10,7 +10,7 @@ pkgname='python-pynotify'
 pkgdesc='Python Inotify Class'
 _gitname='pynotify'
 
-pkgver=1.2.3
+pkgver=1.2.4
 pkgrel=1
 url="https://github.com/gene-git/pynotify"
 
@@ -43,6 +43,6 @@ build() {
 
 package() {
     cd "${_gitname}"
-    ./scripts/do-install ${pkgdir}
+    ./scripts/do-install "${pkgdir}" "${pkgname}" 
 }
 # vim:set ts=4 sts=4 sw=4 et:

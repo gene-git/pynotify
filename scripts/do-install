@@ -4,12 +4,14 @@
 #
 # installer script for pynotify
 # e.g. Call from PKGBUILD:  
-#   ./do-install ${pkgdir}
+#   ./do-install ${pkgdir} [package_name]
 # gene c
 #
 dest="$1"
 self='pynotify'
-
+if [ "$2" != "" ] ; then
+    self="$2"
+fi
 info="Docs README.rst scripts packaging examples"
 infodir="/usr/share/${self}"
 
