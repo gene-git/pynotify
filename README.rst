@@ -68,6 +68,7 @@ Each even in the list provides for:
 Thats it in a nutshell. add_watch takes one optional argument:
 
 .. code-block:: bash
+
     Inotify.add_watch(*path*, mask=xxx)
 
 *add_watch()* returns the watched descriptor, *wd*. If successful wd is >= 0.
