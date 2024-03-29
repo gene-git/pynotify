@@ -89,7 +89,7 @@ Otherwise the select loop will break after the timeout. A value of zero causes s
 immediately. The default value should provide reasonable behaviour.
 
 Mask Flags
-----------
+==========
 
 You can get the full list of possible mask flags reading code, which has comments, or using:
 
