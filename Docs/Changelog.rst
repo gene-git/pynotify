@@ -1,6 +1,12 @@
 Changelog
 =========
 
+**[1.2.3] ----- 2024-03-29** ::
+
+	    typo in readme.rst
+	    update Docs/Changelog.rst Docs/pynotify.pdf
+
+
 **[1.2.2] ----- 2024-03-29** ::
 
 	    Fix README.rst title level
