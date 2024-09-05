@@ -17,7 +17,7 @@ Key features
 New / Interesting
 ==================
 
-Updates and new info goes here
+ * Arch PKGBUILD add missing dependency on python-installer
 
 ###############
 Getting Started
@@ -33,6 +33,7 @@ in one terminal do:
    ./examples/test_inotify.py
 
 In another terminal do something like:
+
 .. code-block:: bash
 
     touch /tmp/xxx/A
@@ -57,6 +58,7 @@ What the code does is essentialy:
 
 The first loop uses get_events() method which is an iterator that returns a list of events.
 Each even in the list provides for:
+
 .. code-block:: bash
 
     event.wd            # the watch descriptor
@@ -80,6 +82,7 @@ as provided in */usr/include/sys/inotify.h*.
 
 Before calling get_events() there is one additionl attribute that can be set on an instance
 of Inotify which is a select timeout which defaults to 5 seconds.
+
 .. code-block:: bash
 
     inotify.timeout
@@ -99,7 +102,6 @@ You can get the full list of possible mask flags reading code, which has comment
    from pynotify import InotifyMask, Inotify
    for item in InotifyMask.mask_to_events(0xFFFFFFFF):
         item
-
 
 
 ########
