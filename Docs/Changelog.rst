@@ -1,6 +1,13 @@
 Changelog
 =========
 
+**[1.2.5] ----- 2024-09-05** ::
+
+	    Arch PKGBUILD : add missing dependency python-installer
+	        Thanks to @Bonnietwin via https://aur.archlinux.org/packages/python-pynotify#comment-989452
+	    update Docs/Changelog.rst Docs/pynotify.pdf
+
+
 **[1.2.4] ----- 2024-03-29** ::
 
 	    Installer takes optional package name - use in PKGBUILD
