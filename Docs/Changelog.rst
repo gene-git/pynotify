@@ -1,6 +1,12 @@
 Changelog
 =========
 
+**[1.2.7] ----- 2024-09-07** ::
+
+	    more rst tweaks
+	    update Docs/Changelog.rst Docs/pynotify.pdf
+
+
 **[1.2.6] ----- 2024-09-07** ::
 
 	    minor rst tweaks to readme
