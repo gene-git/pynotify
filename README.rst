@@ -12,12 +12,12 @@ pynotify : Python inotify implementation built atop standard C-library.
 Key features
 ============
 
- * Provides a python class to monitor 1 or more file paths for inotify events.
+* Provides a python class to monitor 1 or more file paths for inotify events.
 
 New / Interesting
 ==================
 
- * Arch PKGBUILD add missing dependency on python-installer
+* Arch PKGBUILD add missing dependency on python-installer
 
 ###############
 Getting Started
@@ -130,23 +130,23 @@ When running as non-root then set root_dest a user writable directory
 Dependencies
 ============
 
-* Run Time :
+**Run Time** :
 
-  * python          (3.11 or later)
+ * python          (3.11 or later)
 
-* Building Package:
+**Building Package** :
 
-  * git
-  * hatch           (aka python-hatch)
-  * wheel           (aka python-wheel)
-  * build           (aka python-build)
-  * installer       (aka python-installer)
-  * rsync
+ * git
+ * hatch           (aka python-hatch)
+ * wheel           (aka python-wheel)
+ * build           (aka python-build)
+ * installer       (aka python-installer)
+ * rsync
 
-* Optional for building docs:
+**Optional for building docs** :
 
-  * sphinx
-  * texlive-latexextra  (archlinux packaguing of texlive tools)
+ * sphinx
+ * texlive-latexextra  (archlinux packaguing of texlive tools)
 
 Philosophy
 ==========
@@ -161,8 +161,8 @@ License
 
 Created by Gene C. and licensed under the terms of the MIT license.
 
- * SPDX-License-Identifier: MIT
- * Copyright (c) 2023 Gene C
+* SPDX-License-Identifier: MIT
+* SPDX-FileCopyrightText: © 2023-present Gene C <arch@sapience.com>
 
 
 .. _Github: https://github.com/gene-git/pynotify
