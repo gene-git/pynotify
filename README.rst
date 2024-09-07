@@ -132,21 +132,21 @@ Dependencies
 
 **Run Time** :
 
- * python          (3.11 or later)
+* python          (3.11 or later)
 
 **Building Package** :
 
- * git
- * hatch           (aka python-hatch)
- * wheel           (aka python-wheel)
- * build           (aka python-build)
- * installer       (aka python-installer)
- * rsync
+* git
+* hatch           (aka python-hatch)
+* wheel           (aka python-wheel)
+* build           (aka python-build)
+* installer       (aka python-installer)
+* rsync
 
 **Optional for building docs** :
 
- * sphinx
- * texlive-latexextra  (archlinux packaguing of texlive tools)
+* sphinx
+* texlive-latexextra  (archlinux packaguing of texlive tools)
 
 Philosophy
 ==========
