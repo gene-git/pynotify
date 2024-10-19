@@ -1,6 +1,12 @@
 Changelog
 =========
 
+**[1.2.8] ----- 2024-10-19** ::
+
+	    remove unused requirements file
+	    update Docs/Changelog.rst Docs/pynotify.pdf
+
+
 **[1.2.7] ----- 2024-09-07** ::
 
 	    more rst tweaks
