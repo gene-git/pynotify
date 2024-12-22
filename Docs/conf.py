@@ -7,15 +7,17 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = "pynotify"
-copyright = '2023, Gene C'
+copyright = '2023-present, Gene C'
 author = 'Gene C'
-release = '1.2.8'
+release = '1.2.9'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 #extensions = ['myst_parser']
-extensions = []
+extensions = ['sphinx.ext.autodoc', 'autoapi.extension']
+autoapi_dirs = ['../src/pynotify']
+autoapi_options = ['members']
 
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']

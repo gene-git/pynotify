@@ -6,6 +6,7 @@ Wrap libc inotify
 """
 # pylint: disable=invalid-name
 import os
+from typing import (List, Iterator)
 from dataclasses import dataclass,field
 from select import select
 import struct
@@ -34,7 +35,7 @@ def mask_to_event_types(mask:int):
     event_types = InotifyMask.mask_to_events(mask)
     return event_types
 
-def _read_inotify_events(inotify):
+def _read_inotify_events(inotify) -> [InotifyEvent]:
     """
     read one or more event(s) up to max number of events
     If more than that max, we are called from select loop
@@ -133,10 +134,10 @@ def _read_inotify_events(inotify):
         buf = inotify.buf
     return events
 
-def get_inotify_events(inotify):
+def get_inotify_events(inotify) -> Iterator[List[InotifyEvent]]:
     """
     wait for events
-     = provide iterater until fd is closed
+     - provide iterater until fd is closed
      - fd is closed when the inotify event says so.
      - if timeout < 0, wait forever
     """

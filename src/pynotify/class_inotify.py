@@ -63,11 +63,22 @@ class Inotify:
 
     def add_watch(self, path, mask=InotifyMask.IN_ALL_EVENTS):
         """
-        add watch on path
-         - mask is a bit mask from sys/inotify.h (see hand created inotify_h file)
-         - Or together whatever items to watch (m1 | m2 ... )
-         - can only inotify file that exists
-         - returns wd - if file non-existent then wd = -1
+        Add Watch
+            Adds a watch to filesystem path
+
+        :param path:
+
+            The filesystem path on which to set the watch
+            path must exist as can only use inotify existing file.
+
+        :param mask:
+
+            A bit mask from sys/inotify.h (see hand created inotify_h file).
+            A mask can OR together all items to watch for (m1 | m2 ... ).
+         
+        :returns:
+
+            Watch descriptor, wd. If file is non-existent then returns -1
         """
         #if not os.path.exists(path):
         #    return
@@ -91,13 +102,21 @@ class Inotify:
         return wd
 
     def save_errno(self):
-        """ keep the last errno """
+        """
+        Keep the last errno
+        """
         err = ctypes.get_errno()
         self.errno_code = errno.errorcode.get(err)
         self.errno_str = os.strerror(err)
 
     def rm_watch(self, path):
-        """ add watch on path """
+        """
+        Remove watch on this path
+
+        :param path:
+
+            The filesystem path on which to remove the watch
+        """
 
         wd = self.watch_wd.get(path)
         if not wd:
@@ -110,7 +129,7 @@ class Inotify:
 
     def rm_all_watches(self):
         """
-        flush all of them:
+        Remove all current watches
         """
         for (wd, _path) in  self.watch_path.items():
             self.inotify_rm_watch(self.fd, wd)
@@ -119,9 +138,12 @@ class Inotify:
 
     def get_events(self):
         """
-        wait for events
-         = provide iterater until fd is closed
-         - fd is closed when the inotify event says so.
-         - if timeout < 0, wait forever
+        Wait for events
+
+        :returns:
+
+            provide an iterater until fd is closed
+            fd is closed when the inotify event says so.
+            if timeout < 0, wait forever
         """
         return get_inotify_events(self)

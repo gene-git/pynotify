@@ -103,6 +103,36 @@ You can get the full list of possible mask flags reading code, which has comment
    for item in InotifyMask.mask_to_events(0xFFFFFFFF):
         item
 
+This currently outputs the following where we have manually added comments:
+
+.. code::
+
+    <InotifyMask.IN_ACCESS: 1>              # File was accessed
+    <InotifyMask.IN_MODIFY: 2>              # File was modified.
+    <InotifyMask.IN_ATTRIB: 4>              # Metadata changed.
+    <InotifyMask.IN_CLOSE_WRITE: 8>         # Writtable file was closed.
+    <InotifyMask.IN_CLOSE_NOWRITE: 16>      # Unwrittable file closed.
+    <InotifyMask.IN_CLOSE: 24>              # File closed
+    <InotifyMask.IN_OPEN: 32>               # File was opened.
+    <InotifyMask.IN_MOVED_FROM: 64>         # File was moved from X.
+    <InotifyMask.IN_MOVED_TO: 128>          # File was moved to Y.
+    <InotifyMask.IN_MOVE: 192>              # File was moved
+    <InotifyMask.IN_CREATE: 256>            # Subfile was created.
+    <InotifyMask.IN_DELETE: 512>            # Subfile was deleted.
+    <InotifyMask.IN_DELETE_SELF: 1024>      # Self was deleted.
+    <InotifyMask.IN_MOVE_SELF: 2048>        # Self was moved.
+    <InotifyMask.IN_UNMOUNT: 8192>          # Backing fs was unmounted.
+    <InotifyMask.IN_Q_OVERFLOW: 16384>      # Event queue overflowed.
+    <InotifyMask.IN_IGNORED: 32768>         # File was ignored.
+    <InotifyMask.IN_ONLYDIR: 16777216>      # Only watch the path if it is a directory.
+    <InotifyMask.IN_DONT_FOLLOW: 33554432>  # Do not follow a sym link.
+    <InotifyMask.IN_EXCL_UNLINK: 67108864>  # Exclude events on unlinked objects.
+    <InotifyMask.IN_MASK_CREATE: 268435456> # Only create watches.
+    <InotifyMask.IN_MASK_ADD: 536870912>    # Add to the mask of an already existing watch.
+    <InotifyMask.IN_ISDIR: 1073741824>      # Event occurred against dir.
+    <InotifyMask.IN_ONESHOT: 2147483648>    # Only send event once.
+    <InotifyMask.IN_ALL_EVENTS: 4095>       # All events which that can be waited on.
+
 
 ########
 Appendix
