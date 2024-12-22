@@ -1,6 +1,12 @@
 Changelog
 =========
 
+**[1.2.9] ----- 2024-12-22** ::
+
+	    Add API Reference to documentation
+	    update Docs/Changelog.rst Docs/pynotify.pdf
+
+
 **[1.2.8] ----- 2024-10-19** ::
 
 	    remove unused requirements file
