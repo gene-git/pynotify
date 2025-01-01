@@ -9,7 +9,7 @@
 project = "pynotify"
 copyright = '2023-present, Gene C'
 author = 'Gene C'
-release = '1.2.9'
+release = '1.3.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

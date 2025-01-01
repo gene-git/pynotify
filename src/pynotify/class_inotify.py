@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: MIT
-# Copyright (c) 2023 Gene C
+# DX-FileCopyrightText: © 2023-present  Gene C <arch@sapience.com>
 """
 Wrap libc inotify 
  see man inotify et al for details
