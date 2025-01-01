@@ -1,6 +1,15 @@
 Changelog
 =========
 
+**[1.3.0] ----- 2024-12-31** ::
+
+	    Git tags are now signed.
+	    Update SPDX tags
+	    Add git signing key to Arch Package
+	    Bump python vers
+	    update Docs/Changelog.rst Docs/pynotify.pdf
+
+
 **[1.2.9] ----- 2024-12-22** ::
 
 	    Add API Reference to documentation
