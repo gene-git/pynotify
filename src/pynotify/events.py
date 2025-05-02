@@ -1,13 +1,13 @@
 # SPDX-License-Identifier: MIT
 # SPDX-FileCopyrightText: © 2023-present  Gene C <arch@sapience.com>
 """
-Wrap libc inotify 
+Wrap libc inotify
  see man inotify et al for details
 """
 # pylint: disable=invalid-name
 import os
 from typing import (List, Iterator)
-from dataclasses import dataclass,field
+from dataclasses import (dataclass, field)
 from select import select
 import struct
 from .class_mask import InotifyMask
@@ -16,32 +16,35 @@ from .class_mask import InotifyMask
 # Inotify event C-struct
 # {int wd, uint32 mask, uint32 cookie, uint32 len_name, char name[] }
 #
-#
+
+
 @dataclass
 class InotifyEvent:
     """
     one inotify event
     """
-    wd : int = -1
-    mask : int = -1
-    event_types : list[str] = field(default_factory=list)
-    path : str = ''
-    file : str = ''
+    wd: int = -1
+    mask: int = -1
+    event_types: list[str] = field(default_factory=list)
+    path: str = ''
+    file: str = ''
 
-def mask_to_event_types(mask:int):
+
+def mask_to_event_types(mask: int):
     """
     From mask => return list of event types
     """
     event_types = InotifyMask.mask_to_events(mask)
     return event_types
 
-def _read_inotify_events(inotify) -> [InotifyEvent]:
+
+def _read_inotify_events(inotify) -> List[InotifyEvent]:
     """
     read one or more event(s) up to max number of events
     If more than that max, we are called from select loop
     so will be called to process more if any left to read.
     Event "name" field is filename with max len = NAME_MAX (255)
-    So, to read 1 event need at most :
+    So, to read 1 event need at most:
         max_event_size = hdr + NAME_MAX +1 (for null terminator)
     Idea is we keep a buffer of whatever we have read and process
     All events - if buffer has leftover but not enough for an event, it
@@ -62,7 +65,7 @@ def _read_inotify_events(inotify) -> [InotifyEvent]:
     max_to_read = 50
     events_size = max_to_read * event_size_max
 
-    events = []
+    events: List[InotifyEvent] = []
     try:
         chunk = os.read(fd, events_size)
     except OSError:
@@ -88,7 +91,7 @@ def _read_inotify_events(inotify) -> [InotifyEvent]:
         [wd, mask, _cookie, len_name] = header
 
         len_event = hdr_size + len_name
-        if len_buf < len_event :
+        if len_buf < len_event:
             # partial - wait till next time
             inotify.buf = buf
             return events
@@ -96,10 +99,6 @@ def _read_inotify_events(inotify) -> [InotifyEvent]:
         #
         # Process an event
         #
-        #if mask & InotifyMask.IN_Q_OVERFLOW:
-        #    print('IN_Q_OVERFLOW')
-        #if wd < 0:
-        #    print('wd < 0')
 
         # overflow of event queue - not good - so we bail
         if mask & InotifyMask.IN_Q_OVERFLOW or wd < 0:
@@ -111,7 +110,7 @@ def _read_inotify_events(inotify) -> [InotifyEvent]:
         event.wd = wd
         event.path = inotify.watch_path.get(wd)
         event.mask = mask
-        #print(f'event read: wd={wd} path={event.path} mask={mask}')
+
         #
         # c strings are null terminated
         #
@@ -134,6 +133,7 @@ def _read_inotify_events(inotify) -> [InotifyEvent]:
         buf = inotify.buf
     return events
 
+
 def get_inotify_events(inotify) -> Iterator[List[InotifyEvent]]:
     """
     wait for events
@@ -142,7 +142,7 @@ def get_inotify_events(inotify) -> Iterator[List[InotifyEvent]]:
      - if timeout < 0, wait forever
     """
     if len(inotify.watch_wd) == 0:
-        return []
+        return
 
     timeout = inotify.timeout
     done = False
@@ -155,6 +155,7 @@ def get_inotify_events(inotify) -> Iterator[List[InotifyEvent]]:
                 (fds, _fwr, _ferr) = select([inotify.fd], [], [], timeout)
             else:
                 (fds, _fwr, _ferr) = select([inotify.fd], [], [])
+
         except (IOError, KeyboardInterrupt):
             inotify.rm_all_watches()
             done = True
@@ -162,15 +163,14 @@ def get_inotify_events(inotify) -> Iterator[List[InotifyEvent]]:
 
         # process event(s)
         if not fds:
-            return []
+            return
 
         events = _read_inotify_events(inotify)
 
-        #
         # check if watched path deleted
-        #
         for event in events:
-            if InotifyMask.IN_DELETE_SELF & event.mask and event.path in inotify.watch_wd:
+            if (InotifyMask.IN_DELETE_SELF & event.mask and
+                event.path in inotify.watch_wd):                # noqa: E129
                 inotify.rm_watch(event.path)
         yield events
-    return []
+    return

@@ -12,15 +12,18 @@ pynotify : Python inotify implementation built atop standard C-library.
 Key features
 ============
 
-* Provides a python class to monitor 1 or more file paths for inotify events.
+ * Provides a python class to monitor 1 or more file paths for inotify events.
+
+ * All git tags are signed with arch@sapience.com key which is available via WKD
+   or download from https://www.sapience.com/tech. Add the key to your package builder gpg keyring.
+   The key is included in the Arch package and the source= line with *?signed* at the end can be used
+   to verify the git tag.  You can also manually verify the signature
 
 New / Interesting
 ==================
 
-* All git tags are signed with arch@sapience.com key which is available via WKD
-  or download from https://www.sapience.com/tech. Add the key to your package builder gpg keyring.
-  The key is included in the Arch package and the source= line with *?signed* at the end can be used
-  to verify the git tag.  You can also manually verify the signature
+ * Tidy ups: PEP-8, PEP-257, PEP-484 PEP-561 
+ * improve reference API doc.
 
 
 ###############
