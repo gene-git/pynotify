@@ -1,67 +1,101 @@
+=========
 Changelog
 =========
 
-**[1.3.0] ----- 2024-12-31** ::
+Tags
+====
 
-	    Git tags are now signed.
-	    Update SPDX tags
-	    Add git signing key to Arch Package
-	    Bump python vers
-	    update Docs/Changelog.rst Docs/pynotify.pdf
+::
 
+	1.2.1 (2024-03-29) -> 1.5.0 (2025-05-02)
+	22 commits.
 
-**[1.2.9] ----- 2024-12-22** ::
-
-	    Add API Reference to documentation
-	    update Docs/Changelog.rst Docs/pynotify.pdf
+Commits
+=======
 
 
-**[1.2.8] ----- 2024-10-19** ::
+* 2025-05-02  : **1.5.0**
 
-	    remove unused requirements file
-	    update Docs/Changelog.rst Docs/pynotify.pdf
+::
 
+                Tidy ups: PEP-8, PEP-257, PEP-484 PEP-561
+                improve reference API doc.
+                Add py.typed so type checkers like mypy can be used with the module
+ 2024-12-31     update Docs/Changelog.rst Docs/pynotify.pdf
 
-**[1.2.7] ----- 2024-09-07** ::
+* 2024-12-31  : **1.3.0**
 
-	    more rst tweaks
-	    update Docs/Changelog.rst Docs/pynotify.pdf
+::
 
+                Git tags are now signed.
+                Update SPDX tags
+                Add git signing key to Arch Package
+                Bump python vers
+ 2024-12-22     update Docs/Changelog.rst Docs/pynotify.pdf
 
-**[1.2.6] ----- 2024-09-07** ::
+* 2024-12-22  : **1.2.9**
 
-	    minor rst tweaks to readme
-	    update Docs/Changelog.rst Docs/pynotify.pdf
+::
 
+                Add API Reference to documentation
+ 2024-10-19     update Docs/Changelog.rst Docs/pynotify.pdf
 
-**[1.2.5] ----- 2024-09-05** ::
+* 2024-10-19  : **1.2.8**
 
-	    Arch PKGBUILD : add missing dependency python-installer
-	        Thanks to @Bonnietwin via https://aur.archlinux.org/packages/python-pynotify#comment-989452
-	    update Docs/Changelog.rst Docs/pynotify.pdf
+::
 
+                remove unused requirements file
+ 2024-09-07     update Docs/Changelog.rst Docs/pynotify.pdf
 
-**[1.2.4] ----- 2024-03-29** ::
+* 2024-09-07  : **1.2.7**
 
-	    Installer takes optional package name - use in PKGBUILD
-	    update Docs/Changelog.rst Docs/pynotify.pdf
+::
 
+                more rst tweaks
+                update Docs/Changelog.rst Docs/pynotify.pdf
 
-**[1.2.3] ----- 2024-03-29** ::
+* 2024-09-07  : **1.2.6**
 
-	    typo in readme.rst
-	    update Docs/Changelog.rst Docs/pynotify.pdf
+::
 
+                minor rst tweaks to readme
+ 2024-09-05     update Docs/Changelog.rst Docs/pynotify.pdf
 
-**[1.2.2] ----- 2024-03-29** ::
+* 2024-09-05  : **1.2.5**
 
-	    Fix README.rst title level
-	    update Docs/Changelog.rst Docs/pynotify.pdf
+::
 
+                Arch PKGBUILD : add missing dependency python-installer
+                    Thanks to @Bonnietwin via https://aur.archlinux.org/packages/python-
+                    pynotify#comment-989452
+ 2024-03-29     update Docs/Changelog.rst Docs/pynotify.pdf
 
-**[1.2.1] ----- 2024-03-29** ::
+* 2024-03-29  : **1.2.4**
 
-	    Public release
-	    Initial commit - python Inotify class
+::
+
+                Installer takes optional package name - use in PKGBUILD
+                update Docs/Changelog.rst Docs/pynotify.pdf
+
+* 2024-03-29  : **1.2.3**
+
+::
+
+                typo in readme.rst
+                update Docs/Changelog.rst Docs/pynotify.pdf
+
+* 2024-03-29  : **1.2.2**
+
+::
+
+                Fix README.rst title level
+                update Docs/Changelog.rst Docs/pynotify.pdf
+
+* 2024-03-29  : **1.2.1**
+
+::
+
+                Public release
+                Initial commit - python Inotify class
 
 
