@@ -1,0 +1,76 @@
+pynotify.class_mask
+===================
+
+.. py:module:: pynotify.class_mask
+
+.. autoapi-nested-parse::
+
+   Constants taken from sys/inotify.h
+
+
+
+
+
+Module Contents
+---------------
+
+.. py:class:: InotifyMask
+
+
+
+   Mask values from /usr/include/sys/inotify.h.
+
+   Masks can be bitwise *OR* together. For example IN_CLOSE 
+   can be written as (IN_CLOSE_WRITE | IN_CLOSE_NOWRITE).
+
+   Available masks:
+
+   * IN_ACCESS : **File was accessed**
+   * IN_MODIFY : **File was modified**
+   * IN_ATTRIB : **Metadata changed**
+
+   * IN_CLOSE_WRITE : **Writtable file was closed**
+   * IN_CLOSE_NOWRITE : **Unwrittable file closed**
+   * IN_CLOSE : **Closed write or nowrite**
+
+   * IN_OPEN : **File was opened**
+
+   * IN_MOVED_FROM : **File was moved from X**
+   * IN_MOVED_TO : **File was moved to Y**
+   * IN_MOVE : **Moved from or to**
+
+   * IN_CREATE : **Subfile was created**
+   * IN_DELETE : **Subfile was deleted**
+   * IN_DELETE_SELF :**Self was deleted**
+   * IN_MOVE_SELF : **Self was moved**
+
+   # Events sent by the kernel.
+
+   * IN_UNMOUNT : **Backing fs was unmounted**
+   * IN_Q_OVERFLOW : **Event queued overflowed**
+   * IN_IGNORED : **File was ignored**
+
+   # Special flags.
+
+   * IN_ONLYDIR :         **Only watch the path if it is a directory**
+   * IN_DONT_FOLLOW : **Do not follow a sym link**
+   * IN_EXCL_UNLINK : **Exclude events on unlinked objects**
+   * IN_MASK_CREATE : **Only create watches**
+   * IN_MASK_ADD : **Add to mask of an existing watch**
+   * IN_ISDIR : **Event occurred against dir**
+   * IN_ONESHOT : **Only send event once**
+
+   # All events which a program can wait on.
+
+   * IN_ALL_EVENTS : **All events**
+
+
+
+   .. py:method:: mask_to_events(mask)
+      :classmethod:
+
+
+      Return list of all events in mask
+
+
+

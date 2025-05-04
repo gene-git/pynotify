@@ -1,0 +1,22 @@
+pynotify
+========
+
+.. py:module:: pynotify
+
+.. autoapi-nested-parse::
+
+   pynotify public
+
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/pynotify/class_inotify/index
+   /autoapi/pynotify/class_mask/index
+   /autoapi/pynotify/events/index
+
+

@@ -1,0 +1,91 @@
+pynotify.class_inotify
+======================
+
+.. py:module:: pynotify.class_inotify
+
+.. autoapi-nested-parse::
+
+   Wrap around the standard libc library inotify.
+
+    See also standard man pages for inotify for more detail.
+
+
+
+
+
+Module Contents
+---------------
+
+.. py:class:: Inotify
+
+   Python inotify class.
+
+   Uses *inotify* from the standard C-library.
+
+
+
+   .. py:method:: add_watch(path: str, mask: int = InotifyMask.IN_ALL_EVENTS) -> int
+
+      Adds a watch to filesystem path.
+
+      Args:
+          path (str):
+          The filesystem path on which to set the watch
+          path must exist as can only use inotify existing file.
+
+          mask (InotifyMask):
+          The mask specifies which events to watch for.
+
+          A mask is made by bitwise OR of one or more masks. 
+          Each mask item is taken from *InotifyMask*. 
+
+          For example:
+
+              mask =  (InotifyMask.OPEN | InotifyMask.CLOSE ).
+          
+          See InotifyMask for the full list.
+
+      Returns:
+          int:
+          Watch descriptor, wd.
+          If non-existent file then returns -1
+
+
+
+
+   .. py:method:: save_errno()
+
+      Keep the last errno
+
+
+
+   .. py:method:: rm_watch(path: str)
+
+      Remove watch on this path.
+
+      Args:
+          path (str):
+          The filesystem path to remove the watch for.
+
+
+
+   .. py:method:: rm_all_watches()
+
+      Remove all current watches.
+
+
+
+   .. py:method:: get_events() -> Iterator[List[pynotify.events.InotifyEvent]]
+
+      Wait for events.
+
+      Args:
+
+      Returns:
+          Iterator[List[InotifyEvent]]:
+          Provides an iterater until fd is closed.
+          fd is closed when the inotify event says so.
+          if timeout < 0, wait forever.
+
+
+

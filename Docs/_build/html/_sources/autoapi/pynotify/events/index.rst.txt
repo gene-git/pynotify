@@ -1,0 +1,37 @@
+pynotify.events
+===============
+
+.. py:module:: pynotify.events
+
+.. autoapi-nested-parse::
+
+   Wrap libc inotify
+    see man inotify et al for details
+
+
+
+
+
+
+
+Module Contents
+---------------
+
+.. py:class:: InotifyEvent
+
+   one inotify event
+
+
+.. py:function:: mask_to_event_types(mask: int)
+
+   From mask => return list of event types
+
+
+.. py:function:: get_inotify_events(inotify) -> Iterator[List[InotifyEvent]]
+
+   wait for events
+    - provide iterater until fd is closed
+    - fd is closed when the inotify event says so.
+    - if timeout < 0, wait forever
+
+
