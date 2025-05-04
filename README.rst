@@ -22,6 +22,7 @@ Key features
 New / Interesting
 ==================
 
+ * Improve API reference documentation
  * Tidy ups: PEP-8, PEP-257, PEP-484 PEP-561 
  * improve reference API doc.
 

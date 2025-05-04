@@ -1,8 +1,9 @@
 # SPDX-License-Identifier: MIT
 # DX-FileCopyrightText: © 2023-present  Gene C <arch@sapience.com>
 """
-Wrap libc inotify
- see man inotify et al for details
+Wrap around the standard libc library inotify.
+
+ See also standard man pages for inotify for more detail.
 """
 # pylint: disable=invalid-name
 from typing import (Dict, Iterator, List)
@@ -28,7 +29,8 @@ def _load_libc():
 class Inotify:
     """
     Python inotify class.
-     - makes use of standard C-lib inotify
+
+    Uses *inotify* from the standard C-library.
 
     """
     # pylint: disable=too-many-instance-attributes
@@ -79,12 +81,22 @@ class Inotify:
             path must exist as can only use inotify existing file.
 
             mask (InotifyMask):
-            A bit mask from sys/inotify.h (see InotifyMask)
-            A mask can OR together all items to watch for (m1 | m2 ... ).
+            The mask specifies which events to watch for.
 
-            Returns (int):
+            A mask is made by bitwise OR of one or more masks. 
+            Each mask item is taken from *InotifyMask*. 
+
+            For example:
+
+                mask =  (InotifyMask.OPEN | InotifyMask.CLOSE ).
+            
+            See InotifyMask for the full list.
+
+        Returns:
+            int:
             Watch descriptor, wd.
             If non-existent file then returns -1
+
         """
         #
         # Speak bytes to C-code
@@ -142,11 +154,12 @@ class Inotify:
 
     def get_events(self) -> Iterator[List[InotifyEvent]]:
         """
-        Wait for events
+        Wait for events.
 
         Args:
 
-        Returns (Iterator[List[InotifyEvent]]):
+        Returns:
+            Iterator[List[InotifyEvent]]:
             Provides an iterater until fd is closed.
             fd is closed when the inotify event says so.
             if timeout < 0, wait forever.
