@@ -7,12 +7,19 @@ Tags
 
 ::
 
-	1.2.1 (2024-03-29) -> 1.5.1 (2025-05-04)
-	24 commits.
+	1.2.1 (2024-03-29) -> 1.6.0 (2025-05-21)
+	26 commits.
 
 Commits
 =======
 
+
+* 2025-05-21  : **1.6.0**
+
+::
+
+                Use builtin types where possible. e.g. typing.List -> list
+ 2025-05-04     update Docs/Changelog Docs/pynotify.pdf
 
 * 2025-05-04  : **1.5.1**
 
