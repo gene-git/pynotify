@@ -6,7 +6,7 @@ Wrap around the standard libc library inotify.
  See also standard man pages for inotify for more detail.
 """
 # pylint: disable=invalid-name
-from typing import (Dict, Iterator, List)
+from collections.abc import (Iterator)
 import os
 import ctypes
 import ctypes.util
@@ -45,8 +45,8 @@ class Inotify:
         self.buf: bytes = b''
 
         # Keep track of each watched item by (wd, path)
-        self.watch_path: Dict[int, str] = {}
-        self.watch_wd: Dict[str, int] = {}
+        self.watch_path: dict[int, str] = {}
+        self.watch_wd: dict[str, int] = {}
 
         # Can save one errno via self.save_errno()
         self.errno_code: int = 0
@@ -83,13 +83,12 @@ class Inotify:
             mask (InotifyMask):
             The mask specifies which events to watch for.
 
-            A mask is made by bitwise OR of one or more masks. 
-            Each mask item is taken from *InotifyMask*. 
+            A mask is made by bitwise OR of one or more masks.
+            Each mask item is taken from *InotifyMask*.
 
             For example:
 
                 mask =  (InotifyMask.OPEN | InotifyMask.CLOSE ).
-            
             See InotifyMask for the full list.
 
         Returns:
@@ -152,14 +151,14 @@ class Inotify:
         self.watch_path = {}
         self.watch_wd = {}
 
-    def get_events(self) -> Iterator[List[InotifyEvent]]:
+    def get_events(self) -> Iterator[list[InotifyEvent]]:
         """
         Wait for events.
 
         Args:
 
         Returns:
-            Iterator[List[InotifyEvent]]:
+            Iterator[list[InotifyEvent]]:
             Provides an iterater until fd is closed.
             fd is closed when the inotify event says so.
             if timeout < 0, wait forever.

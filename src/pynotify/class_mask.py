@@ -11,7 +11,7 @@ class InotifyMask(IntEnum):
     """
     Mask values from /usr/include/sys/inotify.h.
 
-    Masks can be bitwise *OR* together. For example IN_CLOSE 
+    Masks can be bitwise *OR* together. For example IN_CLOSE
     can be written as (IN_CLOSE_WRITE | IN_CLOSE_NOWRITE).
 
     Available masks:

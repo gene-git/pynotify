@@ -6,7 +6,7 @@ Wrap libc inotify
 """
 # pylint: disable=invalid-name
 import os
-from typing import (List, Iterator)
+from collections.abc import (Iterator)
 from dataclasses import (dataclass, field)
 from select import select
 import struct
@@ -38,7 +38,7 @@ def mask_to_event_types(mask: int):
     return event_types
 
 
-def _read_inotify_events(inotify) -> List[InotifyEvent]:
+def _read_inotify_events(inotify) -> list[InotifyEvent]:
     """
     read one or more event(s) up to max number of events
     If more than that max, we are called from select loop
@@ -65,7 +65,7 @@ def _read_inotify_events(inotify) -> List[InotifyEvent]:
     max_to_read = 50
     events_size = max_to_read * event_size_max
 
-    events: List[InotifyEvent] = []
+    events: list[InotifyEvent] = []
     try:
         chunk = os.read(fd, events_size)
     except OSError:
@@ -134,7 +134,7 @@ def _read_inotify_events(inotify) -> List[InotifyEvent]:
     return events
 
 
-def get_inotify_events(inotify) -> Iterator[List[InotifyEvent]]:
+def get_inotify_events(inotify) -> Iterator[list[InotifyEvent]]:
     """
     wait for events
      - provide iterater until fd is closed
