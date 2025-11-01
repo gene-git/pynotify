@@ -1,9 +1,12 @@
 -------------------------------------------------------
  Changelog    : pynotify
- Tags         : 1.3.0 ➙ 1.6.1
-              : 2024-12-31 ➙ 2025-11-01
+ Tags         : 1.5.0 ➙ 1.6.2
+              : 2025-05-02 ➙ 2025-11-01
               : 6 tags. See Docs for full changelog
 -------------------------------------------------------
+
+ 2025-11-01   : 1.6.2
+              - Doc build: use xelatex which candle unicode characters
 
  2025-11-01   : 1.6.1
               - License switch to GPL-2.0-or-later
@@ -25,12 +28,4 @@
                 improve reference API doc.
                 Add py.typed so type checkers like mypy can be used with the module
  2024-12-31   ⋯
-              - update Docs/Changelog.rst Docs/pynotify.pdf
-
- 2024-12-31   : 1.3.0
-              - Git tags are now signed.
-                Update SPDX tags
-                Add git signing key to Arch Package
-                Bump python vers
- 2024-12-22   ⋯
               - update Docs/Changelog.rst Docs/pynotify.pdf

@@ -6,12 +6,18 @@ Tags
 
 .. code-block:: text
 
-	1.2.1 (2024-03-29) -> 1.6.1 (2025-11-01)
-	28 commits.
+	1.2.1 (2024-03-29) -> 1.6.2 (2025-11-01)
+	29 commits.
 
 Commits
 =======
 
+
+* 2025-11-01  : **1.6.2**
+
+.. code-block:: text
+
+              - Doc build: use xelatex which candle unicode characters
 
 * 2025-11-01  : **1.6.1**
 
