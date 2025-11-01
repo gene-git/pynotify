@@ -36,13 +36,12 @@ Module Contents
           mask (InotifyMask):
           The mask specifies which events to watch for.
 
-          A mask is made by bitwise OR of one or more masks. 
-          Each mask item is taken from *InotifyMask*. 
+          A mask is made by bitwise OR of one or more masks.
+          Each mask item is taken from *InotifyMask*.
 
           For example:
 
               mask =  (InotifyMask.OPEN | InotifyMask.CLOSE ).
-          
           See InotifyMask for the full list.
 
       Returns:
@@ -75,14 +74,14 @@ Module Contents
 
 
 
-   .. py:method:: get_events() -> Iterator[List[pynotify.events.InotifyEvent]]
+   .. py:method:: get_events() -> collections.abc.Iterator[list[pynotify.events.InotifyEvent]]
 
       Wait for events.
 
       Args:
 
       Returns:
-          Iterator[List[InotifyEvent]]:
+          Iterator[list[InotifyEvent]]:
           Provides an iterater until fd is closed.
           fd is closed when the inotify event says so.
           if timeout < 0, wait forever.

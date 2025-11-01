@@ -27,7 +27,7 @@ Module Contents
    From mask => return list of event types
 
 
-.. py:function:: get_inotify_events(inotify) -> Iterator[List[InotifyEvent]]
+.. py:function:: get_inotify_events(inotify) -> collections.abc.Iterator[list[InotifyEvent]]
 
    wait for events
     - provide iterater until fd is closed

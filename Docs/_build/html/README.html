@@ -5,12 +5,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pynotify &#8212; pynotify 1.5.1 documentation</title>
+    <title>pynotify &#8212; pynotify 1.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
     <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
-    <script src="_static/documentation_options.js?v=44dfd65d"></script>
+    <script src="_static/documentation_options.js?v=72d88caf"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -48,19 +48,22 @@
 <li><p>All git tags are signed with <a class="reference external" href="mailto:arch&#37;&#52;&#48;sapience&#46;com">arch<span>&#64;</span>sapience<span>&#46;</span>com</a> key which is available via WKD
 or download from <a class="reference external" href="https://www.sapience.com/tech">https://www.sapience.com/tech</a>. Add the key to your package builder gpg keyring.
 The key is included in the Arch package and the source= line with <em>?signed</em> at the end can be used
-to verify the git tag.  You can also manually verify the signature</p></li>
+to verify the git tag.  You can also manually verify the signature.</p></li>
 </ul>
 </div></blockquote>
 </section>
 <section id="new-interesting">
 <h2>New / Interesting<a class="headerlink" href="#new-interesting" title="Link to this heading">¶</a></h2>
-<blockquote>
-<div><ul class="simple">
+<p><strong>1.6.1</strong></p>
+<ul class="simple">
+<li><p>License switch to GPL-2.0-or-later.</p></li>
+</ul>
+<p><strong>1.6.0</strong></p>
+<ul class="simple">
 <li><p>Improve API reference documentation</p></li>
 <li><p>Tidy ups: PEP-8, PEP-257, PEP-484 PEP-561</p></li>
 <li><p>improve reference API doc.</p></li>
 </ul>
-</div></blockquote>
 </section>
 </section>
 <section id="getting-started">
@@ -92,15 +95,15 @@ inotify.add_watch<span class="o">(</span><span class="s1">&#39;/tmp/xxx&#39;</sp
 </div>
 <p>The first loop uses get_events() method which is an iterator that returns a list of events.
 Each even in the list provides for:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>event.wd<span class="w">            </span><span class="c1"># the watch descriptor</span>
-event.mask<span class="w">          </span><span class="c1"># the event mask</span>
-event.event_types<span class="w">   </span><span class="c1"># list of event type enums from the mask</span>
-event.path<span class="w">          </span><span class="c1"># the path being watched (/tmp/xxx)</span>
-event.file<span class="w">          </span><span class="c1"># Possible suppordinate file (/tmp/xxx/A)</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>event.wd            # the watch descriptor
+event.mask          # the event mask
+event.event_types   # list of event type enums from the mask
+event.path          # the path being watched (/tmp/xxx)
+event.file          # Possible subordinate file (/tmp/xxx/A)
 </pre></div>
 </div>
 <p>Thats it in a nutshell. add_watch takes one optional argument:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Inotify.add_watch<span class="o">(</span>*path*,<span class="w"> </span><span class="nv">mask</span><span class="o">=</span>xxx<span class="o">)</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Inotify.add_watch(*path*, mask=xxx)
 </pre></div>
 </div>
 <p><em>add_watch()</em> returns the watched descriptor, <em>wd</em>. If successful wd is &gt;= 0.
@@ -110,7 +113,7 @@ Where mask are event types from the enum <em>InotifyMask.IN_xxx</em>. These even
 as provided in <em>/usr/include/sys/inotify.h</em>.</p>
 <p>Before calling get_events() there is one additionl attribute that can be set on an instance
 of Inotify which is a select timeout which defaults to 5 seconds.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inotify.timeout
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>inotify.timeout
 </pre></div>
 </div>
 <p>The timeout is passed down to <em>select()</em> which waits on the inotify file desriptor for events to provided.
@@ -126,31 +129,31 @@ immediately. The default value should provide reasonable behaviour.</p>
 </pre></div>
 </div>
 <p>This currently outputs the following where we have manually added comments:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">InotifyMask</span><span class="o">.</span><span class="n">IN_ACCESS</span><span class="p">:</span> <span class="mi">1</span><span class="o">&gt;</span>              <span class="c1"># File was accessed</span>
-<span class="o">&lt;</span><span class="n">InotifyMask</span><span class="o">.</span><span class="n">IN_MODIFY</span><span class="p">:</span> <span class="mi">2</span><span class="o">&gt;</span>              <span class="c1"># File was modified.</span>
-<span class="o">&lt;</span><span class="n">InotifyMask</span><span class="o">.</span><span class="n">IN_ATTRIB</span><span class="p">:</span> <span class="mi">4</span><span class="o">&gt;</span>              <span class="c1"># Metadata changed.</span>
-<span class="o">&lt;</span><span class="n">InotifyMask</span><span class="o">.</span><span class="n">IN_CLOSE_WRITE</span><span class="p">:</span> <span class="mi">8</span><span class="o">&gt;</span>         <span class="c1"># Writtable file was closed.</span>
-<span class="o">&lt;</span><span class="n">InotifyMask</span><span class="o">.</span><span class="n">IN_CLOSE_NOWRITE</span><span class="p">:</span> <span class="mi">16</span><span class="o">&gt;</span>      <span class="c1"># Unwrittable file closed.</span>
-<span class="o">&lt;</span><span class="n">InotifyMask</span><span class="o">.</span><span class="n">IN_CLOSE</span><span class="p">:</span> <span class="mi">24</span><span class="o">&gt;</span>              <span class="c1"># File closed</span>
-<span class="o">&lt;</span><span class="n">InotifyMask</span><span class="o">.</span><span class="n">IN_OPEN</span><span class="p">:</span> <span class="mi">32</span><span class="o">&gt;</span>               <span class="c1"># File was opened.</span>
-<span class="o">&lt;</span><span class="n">InotifyMask</span><span class="o">.</span><span class="n">IN_MOVED_FROM</span><span class="p">:</span> <span class="mi">64</span><span class="o">&gt;</span>         <span class="c1"># File was moved from X.</span>
-<span class="o">&lt;</span><span class="n">InotifyMask</span><span class="o">.</span><span class="n">IN_MOVED_TO</span><span class="p">:</span> <span class="mi">128</span><span class="o">&gt;</span>          <span class="c1"># File was moved to Y.</span>
-<span class="o">&lt;</span><span class="n">InotifyMask</span><span class="o">.</span><span class="n">IN_MOVE</span><span class="p">:</span> <span class="mi">192</span><span class="o">&gt;</span>              <span class="c1"># File was moved</span>
-<span class="o">&lt;</span><span class="n">InotifyMask</span><span class="o">.</span><span class="n">IN_CREATE</span><span class="p">:</span> <span class="mi">256</span><span class="o">&gt;</span>            <span class="c1"># Subfile was created.</span>
-<span class="o">&lt;</span><span class="n">InotifyMask</span><span class="o">.</span><span class="n">IN_DELETE</span><span class="p">:</span> <span class="mi">512</span><span class="o">&gt;</span>            <span class="c1"># Subfile was deleted.</span>
-<span class="o">&lt;</span><span class="n">InotifyMask</span><span class="o">.</span><span class="n">IN_DELETE_SELF</span><span class="p">:</span> <span class="mi">1024</span><span class="o">&gt;</span>      <span class="c1"># Self was deleted.</span>
-<span class="o">&lt;</span><span class="n">InotifyMask</span><span class="o">.</span><span class="n">IN_MOVE_SELF</span><span class="p">:</span> <span class="mi">2048</span><span class="o">&gt;</span>        <span class="c1"># Self was moved.</span>
-<span class="o">&lt;</span><span class="n">InotifyMask</span><span class="o">.</span><span class="n">IN_UNMOUNT</span><span class="p">:</span> <span class="mi">8192</span><span class="o">&gt;</span>          <span class="c1"># Backing fs was unmounted.</span>
-<span class="o">&lt;</span><span class="n">InotifyMask</span><span class="o">.</span><span class="n">IN_Q_OVERFLOW</span><span class="p">:</span> <span class="mi">16384</span><span class="o">&gt;</span>      <span class="c1"># Event queue overflowed.</span>
-<span class="o">&lt;</span><span class="n">InotifyMask</span><span class="o">.</span><span class="n">IN_IGNORED</span><span class="p">:</span> <span class="mi">32768</span><span class="o">&gt;</span>         <span class="c1"># File was ignored.</span>
-<span class="o">&lt;</span><span class="n">InotifyMask</span><span class="o">.</span><span class="n">IN_ONLYDIR</span><span class="p">:</span> <span class="mi">16777216</span><span class="o">&gt;</span>      <span class="c1"># Only watch the path if it is a directory.</span>
-<span class="o">&lt;</span><span class="n">InotifyMask</span><span class="o">.</span><span class="n">IN_DONT_FOLLOW</span><span class="p">:</span> <span class="mi">33554432</span><span class="o">&gt;</span>  <span class="c1"># Do not follow a sym link.</span>
-<span class="o">&lt;</span><span class="n">InotifyMask</span><span class="o">.</span><span class="n">IN_EXCL_UNLINK</span><span class="p">:</span> <span class="mi">67108864</span><span class="o">&gt;</span>  <span class="c1"># Exclude events on unlinked objects.</span>
-<span class="o">&lt;</span><span class="n">InotifyMask</span><span class="o">.</span><span class="n">IN_MASK_CREATE</span><span class="p">:</span> <span class="mi">268435456</span><span class="o">&gt;</span> <span class="c1"># Only create watches.</span>
-<span class="o">&lt;</span><span class="n">InotifyMask</span><span class="o">.</span><span class="n">IN_MASK_ADD</span><span class="p">:</span> <span class="mi">536870912</span><span class="o">&gt;</span>    <span class="c1"># Add to the mask of an already existing watch.</span>
-<span class="o">&lt;</span><span class="n">InotifyMask</span><span class="o">.</span><span class="n">IN_ISDIR</span><span class="p">:</span> <span class="mi">1073741824</span><span class="o">&gt;</span>      <span class="c1"># Event occurred against dir.</span>
-<span class="o">&lt;</span><span class="n">InotifyMask</span><span class="o">.</span><span class="n">IN_ONESHOT</span><span class="p">:</span> <span class="mi">2147483648</span><span class="o">&gt;</span>    <span class="c1"># Only send event once.</span>
-<span class="o">&lt;</span><span class="n">InotifyMask</span><span class="o">.</span><span class="n">IN_ALL_EVENTS</span><span class="p">:</span> <span class="mi">4095</span><span class="o">&gt;</span>       <span class="c1"># All events which that can be waited on.</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;InotifyMask.IN_ACCESS: 1&gt;              # File was accessed
+&lt;InotifyMask.IN_MODIFY: 2&gt;              # File was modified.
+&lt;InotifyMask.IN_ATTRIB: 4&gt;              # Metadata changed.
+&lt;InotifyMask.IN_CLOSE_WRITE: 8&gt;         # Writtable file was closed.
+&lt;InotifyMask.IN_CLOSE_NOWRITE: 16&gt;      # Unwrittable file closed.
+&lt;InotifyMask.IN_CLOSE: 24&gt;              # File closed
+&lt;InotifyMask.IN_OPEN: 32&gt;               # File was opened.
+&lt;InotifyMask.IN_MOVED_FROM: 64&gt;         # File was moved from X.
+&lt;InotifyMask.IN_MOVED_TO: 128&gt;          # File was moved to Y.
+&lt;InotifyMask.IN_MOVE: 192&gt;              # File was moved
+&lt;InotifyMask.IN_CREATE: 256&gt;            # Subfile was created.
+&lt;InotifyMask.IN_DELETE: 512&gt;            # Subfile was deleted.
+&lt;InotifyMask.IN_DELETE_SELF: 1024&gt;      # Self was deleted.
+&lt;InotifyMask.IN_MOVE_SELF: 2048&gt;        # Self was moved.
+&lt;InotifyMask.IN_UNMOUNT: 8192&gt;          # Backing fs was unmounted.
+&lt;InotifyMask.IN_Q_OVERFLOW: 16384&gt;      # Event queue overflowed.
+&lt;InotifyMask.IN_IGNORED: 32768&gt;         # File was ignored.
+&lt;InotifyMask.IN_ONLYDIR: 16777216&gt;      # Only watch the path if it is a directory.
+&lt;InotifyMask.IN_DONT_FOLLOW: 33554432&gt;  # Do not follow a sym link.
+&lt;InotifyMask.IN_EXCL_UNLINK: 67108864&gt;  # Exclude events on unlinked objects.
+&lt;InotifyMask.IN_MASK_CREATE: 268435456&gt; # Only create watches.
+&lt;InotifyMask.IN_MASK_ADD: 536870912&gt;    # Add to the mask of an already existing watch.
+&lt;InotifyMask.IN_ISDIR: 1073741824&gt;      # Event occurred against dir.
+&lt;InotifyMask.IN_ONESHOT: 2147483648&gt;    # Only send event once.
+&lt;InotifyMask.IN_ALL_EVENTS: 4095&gt;       # All events which that can be waited on.
 </pre></div>
 </div>
 </section>
@@ -201,24 +204,20 @@ To build manually, clone the repo and :</p>
 </section>
 <section id="philosophy">
 <h2>Philosophy<a class="headerlink" href="#philosophy" title="Link to this heading">¶</a></h2>
-<p>We follow the <em>live at head commit</em> philosophy. This means we recommend using the
-latest commit on git master branch. We also provide git tags.</p>
-<p>This approach is also taken by Google <a class="footnote-reference brackets" href="#id3" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id4" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.</p>
+<p>We follow the <em>live at head commit</em> philosophy as recommended by
+Google’s Abseil team <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.  This means we recommend using the
+latest commit on git master branch.</p>
 </section>
 <section id="license">
 <h2>License<a class="headerlink" href="#license" title="Link to this heading">¶</a></h2>
-<p>Created by Gene C. and licensed under the terms of the MIT license.</p>
+<p>Created by Gene C. and licensed under the terms of the GPL-2.0-or-later license.</p>
 <ul class="simple">
-<li><p>SPDX-License-Identifier: MIT</p></li>
+<li><p>SPDX-License-Identifier: GPL-2.0-or-later</p></li>
 <li><p>SPDX-FileCopyrightText: © 2023-present Gene C &lt;<a class="reference external" href="mailto:arch&#37;&#52;&#48;sapience&#46;com">arch<span>&#64;</span>sapience<span>&#46;</span>com</a>&gt;</p></li>
 </ul>
 <aside class="footnote-list brackets">
-<aside class="footnote brackets" id="id3" role="doc-footnote">
+<aside class="footnote brackets" id="id2" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
-<p><a class="reference external" href="https://github.com/google/googletest">https://github.com/google/googletest</a></p>
-</aside>
-<aside class="footnote brackets" id="id4" role="doc-footnote">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
 <p><a class="reference external" href="https://abseil.io/about/philosophy#upgrade-support">https://abseil.io/about/philosophy#upgrade-support</a></p>
 </aside>
 </aside>
@@ -271,9 +270,9 @@ latest commit on git master branch. We also provide git tags.</p>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Changelog.html">Changelog</a></li>
-<li class="toctree-l1"><a class="reference internal" href="License.html">MIT License</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Contributing.html">How to help with this project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Code-of-conduct.html">Contributor Covenant Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Changelog.html#tags">Tags</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Changelog.html#commits">Commits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="License/License.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="autoapi/index.html">API Reference</a></li>
 </ul>
 
