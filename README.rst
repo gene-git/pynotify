@@ -1,4 +1,4 @@
-.. SPDX-License-Identifier: MIT
+.. SPDX-License-Identifier: GPL-2.0-or-later
 
 ########
 pynotify
@@ -17,14 +17,20 @@ Key features
  * All git tags are signed with arch@sapience.com key which is available via WKD
    or download from https://www.sapience.com/tech. Add the key to your package builder gpg keyring.
    The key is included in the Arch package and the source= line with *?signed* at the end can be used
-   to verify the git tag.  You can also manually verify the signature
+   to verify the git tag.  You can also manually verify the signature.
 
 New / Interesting
 ==================
 
- * Improve API reference documentation
- * Tidy ups: PEP-8, PEP-257, PEP-484 PEP-561 
- * improve reference API doc.
+**1.6.1**
+
+* License switch to GPL-2.0-or-later.
+
+**1.6.0**
+
+* Improve API reference documentation
+* Tidy ups: PEP-8, PEP-257, PEP-484 PEP-561 
+* improve reference API doc.
 
 
 ###############
@@ -67,17 +73,17 @@ What the code does is essentialy:
 The first loop uses get_events() method which is an iterator that returns a list of events.
 Each even in the list provides for:
 
-.. code-block:: bash
+.. code-block:: none
 
     event.wd            # the watch descriptor
     event.mask          # the event mask
     event.event_types   # list of event type enums from the mask
     event.path          # the path being watched (/tmp/xxx)
-    event.file          # Possible suppordinate file (/tmp/xxx/A)
+    event.file          # Possible subordinate file (/tmp/xxx/A)
 
 Thats it in a nutshell. add_watch takes one optional argument:
 
-.. code-block:: bash
+.. code-block:: none
 
     Inotify.add_watch(*path*, mask=xxx)
 
@@ -91,7 +97,7 @@ as provided in */usr/include/sys/inotify.h*.
 Before calling get_events() there is one additionl attribute that can be set on an instance
 of Inotify which is a select timeout which defaults to 5 seconds.
 
-.. code-block:: bash
+.. code-block:: none
 
     inotify.timeout
 
@@ -113,7 +119,7 @@ You can get the full list of possible mask flags reading code, which has comment
 
 This currently outputs the following where we have manually added comments:
 
-.. code::
+.. code-block:: none
 
     <InotifyMask.IN_ACCESS: 1>              # File was accessed
     <InotifyMask.IN_MODIFY: 2>              # File was modified.
@@ -189,23 +195,21 @@ Dependencies
 Philosophy
 ==========
 
-We follow the *live at head commit* philosophy. This means we recommend using the
-latest commit on git master branch. We also provide git tags. 
-
-This approach is also taken by Google [1]_ [2]_.
+We follow the *live at head commit* philosophy as recommended by
+Google's Abseil team [1]_.  This means we recommend using the
+latest commit on git master branch. 
 
 License
 =======
 
-Created by Gene C. and licensed under the terms of the MIT license.
+Created by Gene C. and licensed under the terms of the GPL-2.0-or-later license.
 
-* SPDX-License-Identifier: MIT
+* SPDX-License-Identifier: GPL-2.0-or-later
 * SPDX-FileCopyrightText: © 2023-present Gene C <arch@sapience.com>
 
 
 .. _Github: https://github.com/gene-git/pynotify
 .. _Archlinux AUR: https://aur.archlinux.org/packages/python-pynotify
 
-.. [1] https://github.com/google/googletest  
-.. [2] https://abseil.io/about/philosophy#upgrade-support
+.. [1] https://abseil.io/about/philosophy#upgrade-support
 

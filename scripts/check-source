@@ -1,0 +1,27 @@
+#!/usr/bin/bash
+#
+# Source code checks.
+#
+# Run in src dir
+# i.e. cd src/gfw
+# 
+
+echo "-------------------------------"
+echo "     pylint"
+echo "-------------------------------"
+
+PYTHONPATH=. pylint src/pynotify/*py
+
+echo "-------------------------------"
+echo "     pycodestyle"
+echo "-------------------------------"
+
+PYTHONPATH=. pycodestyle --max-line-length=110 src/pynotify/*py
+
+echo "-------------------------------"
+echo "     mypy"
+echo "-------------------------------"
+
+mypy --check-untyped-defs --follow-untyped-imports src/pynotify/
+
+

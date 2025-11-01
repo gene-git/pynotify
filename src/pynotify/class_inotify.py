@@ -1,5 +1,5 @@
-# SPDX-License-Identifier: MIT
-# DX-FileCopyrightText: © 2023-present  Gene C <arch@sapience.com>
+# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-FileCopyrightText: © 2023-present  Gene C <arch@sapience.com>
 """
 Wrap around the standard libc library inotify.
 

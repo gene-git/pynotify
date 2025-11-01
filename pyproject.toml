@@ -7,7 +7,7 @@ name = "pynotify"
 dynamic = ["version"]
 description = "pynotify : 'Python Inotify Class"
 authors = [{ name = "Gene C", email = "arch@sapience.com" }]
-license = "MIT"
+license = "GPL-2.0-or-later"
 readme = "README.rst"
 keywords = []
 classifiers = [
