@@ -6,12 +6,25 @@ Tags
 
 .. code-block:: text
 
-	1.2.1 (2024-03-29) -> 1.6.2 (2025-11-01)
-	29 commits.
+	1.2.1 (2024-03-29) -> 1.7.0 (2026-01-04)
+	31 commits.
 
 Commits
 =======
 
+
+* 2026-01-04  : **1.7.0**
+
+.. code-block:: text
+
+              - **1.7.0**
+            
+                * Switch packaging from hatch to uv
+ 2025-11-01   ⋯
+
+.. code-block:: text
+
+              - update Docs/Changelogs Docs/pynotify.pdf
 
 * 2025-11-01  : **1.6.2**
 

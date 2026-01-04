@@ -23,26 +23,24 @@ Module Contents
    Uses *inotify* from the standard C-library.
 
 
-
    .. py:method:: add_watch(path: str, mask: int = InotifyMask.IN_ALL_EVENTS) -> int
 
       Adds a watch to filesystem path.
 
       Args:
           path (str):
-          The filesystem path on which to set the watch
-          path must exist as can only use inotify existing file.
+              The filesystem path on which to set the watch
+              path must exist as can only use inotify existing file.
 
           mask (InotifyMask):
-          The mask specifies which events to watch for.
+              The mask specifies which events to watch for.
 
-          A mask is made by bitwise OR of one or more masks.
-          Each mask item is taken from *InotifyMask*.
+              A mask is made by bitwise OR of one or more masks.
+              Each mask item is taken from *InotifyMask*.
 
-          For example:
-
-              mask =  (InotifyMask.OPEN | InotifyMask.CLOSE ).
-          See InotifyMask for the full list.
+              For example:
+              * mask =  (InotifyMask.OPEN | InotifyMask.CLOSE ).
+              * See InotifyMask for the full list.
 
       Returns:
           int:
