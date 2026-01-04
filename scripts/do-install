@@ -9,14 +9,11 @@
 #
 dest="$1"
 self='pynotify'
-if [ "$2" != "" ] ; then
-    self="$2"
-fi
+
 info="Docs README.rst scripts packaging examples"
 infodir="/usr/share/${self}"
 
-
-license="Docs/License.rst"
+license="Docs/License/License.rst"
 licensedir="/usr/share/licenses/${self}"
 
 # list apps without the ".py" or leave empty string
@@ -24,7 +21,16 @@ apps=('')
 
 # so can make app link in /usr/bin
 sitedir=$(/usr/bin/python3 -c "import site; print(site.getsitepackages()[0])")
-self_sitedir=${sitedir}/${self//-/_}
+installdir="${dest}${sitedir}"
+
+uv_opts=(
+    --python /usr/bin/python
+    --system
+    --no-build-isolation
+    --link-mode=copy
+    --compile-bytecode
+)
+
 
 if [ ! -d "$dest" ] ; then
     echo 'Missing destination directory'
@@ -34,8 +40,8 @@ else
     /usr/bin/rsync --mkpath -a ${info} ${dest}/${infodir}/
     /usr/bin/rsync --mkpath -a ${license} ${dest}/${licensedir}/
 
-    /usr/bin/python -m installer --destdir="$dest" dist/*.whl
-
-    exit 0
+    /usr/bin/uv pip install ${uv_opts[@]} --target "$installdir" dist/*.whl
+    /usr/bin/rm -rf "$installdir"/.lock
 fi
+exit 0
 

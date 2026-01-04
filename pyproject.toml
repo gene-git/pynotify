@@ -1,10 +1,9 @@
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["uv_build>=0.9.21,<=1.0.0"]
+build-backend = "uv_build"
 
 [project]
 name = "pynotify"
-dynamic = ["version"]
 description = "pynotify : 'Python Inotify Class"
 authors = [{ name = "Gene C", email = "arch@sapience.com" }]
 license = "GPL-2.0-or-later"
@@ -13,35 +12,30 @@ keywords = []
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
 ]
+requires-python = ">=3.13"
+version = "1.7.0"
 dependencies = []
-
-[tool.hatch.build.targets.wheel]
-packages = ["src/pynotify"]
-include = [
-    "src/pynotify",
-    "src/pynotify/py.typed",
-]
-
 
 [project.urls]
 Documentation = "https://github.com/gene-git/pynotify/Docs"
 Issues = "https://github.com/gene-git/pynotify/issues"
 Source = "https://github.com/gene-git/pynotify"
 
-[tool.hatch.version]
-path = "src/pynotify/__about__.py"
-
-[tool.hatch.envs.default]
-
-[tool.hatch.envs.default.scripts]
-[[tool.hatch.envs.all.matrix]]
-python = ["3.10", "3.11", "3.12"]
-
-[tool.hatch.envs.lint]
-detached = true
-dependencies = [
+[tool.uv.build-backend]
+module-name = 'pynotify'
+module-root = "src"
+source-include = [
+    '/pynotify',
+    '/pynotify/py.typed',
+]
+source-exclude = [
+    ".pytest_cache",
+    "__pycache__",
+    ".mypy_cache",
 ]
 
 [tool.mypy]

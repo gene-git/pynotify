@@ -12,22 +12,23 @@ pynotify : Python inotify implementation built atop standard C-library.
 Key features
 ============
 
- * Provides a python class to monitor 1 or more file paths for inotify events.
+* Provides a python class to monitor 1 or more file paths for inotify events.
 
- * All git tags are signed with arch@sapience.com key which is available via WKD
-   or download from https://www.sapience.com/tech. Add the key to your package builder gpg keyring.
-   The key is included in the Arch package and the source= line with *?signed* at the end can be used
-   to verify the git tag.  You can also manually verify the signature.
+* All git tags are signed with arch@sapience.com key which is available via WKD
+  or download from https://www.sapience.com/tech. Add the key to your package builder gpg keyring.
+  The key is included in the Arch package and the source= line with *?signed* at the end can be used
+  to verify the git tag.  You can also manually verify the signature.
 
 New / Interesting
 ==================
 
-**1.6.1**
+**1.7.0**
+
+* Switch packaging from hatch to uv
+
+**Older**
 
 * License switch to GPL-2.0-or-later.
-
-**1.6.0**
-
 * Improve API reference documentation
 * Tidy ups: PEP-8, PEP-257, PEP-484 PEP-561 
 * improve reference API doc.
@@ -176,16 +177,16 @@ Dependencies
 
 **Run Time** :
 
-* python          (3.11 or later)
+* python          (3.13 or later)
 
 **Building Package** :
 
 * git
-* hatch           (aka python-hatch)
-* wheel           (aka python-wheel)
-* build           (aka python-build)
-* installer       (aka python-installer)
+* uv
+* uv-build        (aka python-uv-build)
 * rsync
+* pytest          (aka python-pytest)
+* pytest-asyncio  (aka python-pytest-asyncio)
 
 **Optional for building docs** :
 

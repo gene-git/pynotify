@@ -2,26 +2,17 @@
 #
 # Source code checks.
 #
-# Run in src dir
-# i.e. cd src/gfw
+# Run in top level dir
 # 
 
-echo "-------------------------------"
-echo "     pylint"
-echo "-------------------------------"
+mod="pynotify"
 
-PYTHONPATH=. pylint src/pynotify/*py
+echo "---"
+echo "code check"
+cd ./src
+PYTHONPATH=. pylint $mod/*py
+PYTHONPATH=. pycodestyle --max-line-length=110 $mod/*py
 
-echo "-------------------------------"
-echo "     pycodestyle"
-echo "-------------------------------"
-
-PYTHONPATH=. pycodestyle --max-line-length=110 src/pynotify/*py
-
-echo "-------------------------------"
-echo "     mypy"
-echo "-------------------------------"
-
-mypy --check-untyped-defs --follow-untyped-imports src/pynotify/
+mypy --check-untyped-defs --follow-untyped-imports $mod
 
 

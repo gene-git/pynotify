@@ -17,7 +17,7 @@ from .events import (InotifyEvent, get_inotify_events)
 
 def _load_libc():
     """
-    Load the standard c-library
+    Load the standard c-library.
     """
     libc_so = ctypes.util.find_library("c")
     if not libc_so:
@@ -31,7 +31,6 @@ class Inotify:
     Python inotify class.
 
     Uses *inotify* from the standard C-library.
-
     """
     # pylint: disable=too-many-instance-attributes
     def __init__(self):
@@ -77,19 +76,18 @@ class Inotify:
 
         Args:
             path (str):
-            The filesystem path on which to set the watch
-            path must exist as can only use inotify existing file.
+                The filesystem path on which to set the watch
+                path must exist as can only use inotify existing file.
 
             mask (InotifyMask):
-            The mask specifies which events to watch for.
+                The mask specifies which events to watch for.
 
-            A mask is made by bitwise OR of one or more masks.
-            Each mask item is taken from *InotifyMask*.
+                A mask is made by bitwise OR of one or more masks.
+                Each mask item is taken from *InotifyMask*.
 
-            For example:
-
-                mask =  (InotifyMask.OPEN | InotifyMask.CLOSE ).
-            See InotifyMask for the full list.
+                For example:
+                * mask =  (InotifyMask.OPEN | InotifyMask.CLOSE ).
+                * See InotifyMask for the full list.
 
         Returns:
             int:

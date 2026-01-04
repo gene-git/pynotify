@@ -10,7 +10,7 @@ latex_engine = 'xelatex'
 project = "pynotify"
 copyright = '2023-present, Gene C'
 author = 'Gene C'
-release = '1.6.0'
+release = "1.7.0"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -23,8 +23,7 @@ autoapi_keep_files = True
 add_module_names = False
 
 templates_path = ['_templates']
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
-
+exclude_patterns = ['_build', 'Thumbs.db', 'Changelog.rst', 'Misc/*.rst']
 
 
 # -- Options for HTML output -------------------------------------------------
