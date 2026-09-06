@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. pynotify &#8212; pynotify 2.0.0
+ documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=51b770b3"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2. API Reference" href="python-api.html" />
+    <link rel="prev" title="Pynotify Documentation" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="pynotify">
+<h1><span class="section-number">1. </span>pynotify<a class="headerlink" href="#pynotify" title="Link to this heading">¶</a></h1>
+<section id="overview">
+<h2><span class="section-number">1.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+<p>pynotify : Python inotify implementation built atop standard C-library.</p>
+</section>
+<section id="key-features">
+<h2><span class="section-number">1.2. </span>Key features<a class="headerlink" href="#key-features" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Provides a python class to monitor 1 or more file paths for inotify events.</p></li>
+<li><p>All git tags are signed with <a class="reference external" href="mailto:arch&#37;&#52;&#48;sapience&#46;com">arch<span>&#64;</span>sapience<span>&#46;</span>com</a> key which is available via WKD
+or download from <a class="reference external" href="https://www.sapience.com/tech">https://www.sapience.com/tech</a>. Add the key to your package builder gpg keyring.
+The key is included in the Arch package and the source= line with <em>?signed</em> at the end can be used
+to verify the git tag.  You can also manually verify the signature.</p></li>
+</ul>
+</section>
+<section id="recent-changes">
+<h2><span class="section-number">1.3. </span>Recent Changes<a class="headerlink" href="#recent-changes" title="Link to this heading">¶</a></h2>
+<p><strong>2.0.0</strong></p>
+<ul class="simple">
+<li><p>meson / meson-python for build / package management</p></li>
+<li><p>periodic code review</p></li>
+<li><p>code cleanups and improvements.</p></li>
+</ul>
+</section>
+<section id="getting-started">
+<h2><span class="section-number">1.4. </span>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">¶</a></h2>
+<p>A simple test program is available in the examples directory. The program
+monitors <em>/tmp/xxx</em> - this can be a file or a directory.  To get a quick idea
+in one terminal do:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>/tmp/xxx
+./examples/test_inotify.py
+</pre></div>
+</div>
+<p>In another terminal do something like:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>touch<span class="w"> </span>/tmp/xxx/A
+touch<span class="w"> </span>/tmp/xxx/B
+rm<span class="w"> </span>/tmp/xxx/*
+rmdir<span class="w"> </span>/tmp/xxx
+</pre></div>
+</div>
+<p>What the code does, schematically, is:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pynotify</span><span class="w"> </span><span class="kn">import</span> <span class="n">Inotify</span>
+<span class="n">inotify</span> <span class="o">=</span> <span class="n">Inotify</span><span class="p">()</span>
+<span class="n">inotify</span><span class="o">.</span><span class="n">add_watch</span><span class="p">(</span><span class="s1">'/tmp/xxx'</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">events</span> <span class="ow">in</span> <span class="n">inotify</span><span class="o">.</span><span class="n">get_events</span><span class="p">():</span>
+     <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">events</span><span class="p">:</span>
+         <span class="k">if</span> <span class="n">event</span><span class="p">:</span>
+             <span class="nb">print</span><span class="p">(</span><span class="o">..</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The first loop uses get_events() method which is an iterator that returns a list of events.
+Each even in the list provides for:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">event</span><span class="o">.</span><span class="n">wd</span>            <span class="c1"># the watch descriptor</span>
+<span class="n">event</span><span class="o">.</span><span class="n">mask</span>          <span class="c1"># the event mask</span>
+<span class="n">event</span><span class="o">.</span><span class="n">event_types</span>   <span class="c1"># list of event type enums from the mask</span>
+<span class="n">event</span><span class="o">.</span><span class="n">path</span>          <span class="c1"># the path being watched (/tmp/xxx)</span>
+<span class="n">event</span><span class="o">.</span><span class="n">file</span>          <span class="c1"># Possible subordinate file (/tmp/xxx/A)</span>
+</pre></div>
+</div>
+<p>Thats it in a nutshell. add_watch takes one optional argument:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Inotify</span><span class="o">.</span><span class="n">add_watch</span><span class="p">(</span><span class="o">*</span><span class="n">path</span><span class="o">*</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">xxx</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><em>add_watch()</em> returns the watched descriptor, <em>wd</em>. If successful wd is &gt;= 0.
+If &lt; 0 then it means the path is non-existent.</p>
+<p>If not provided then the watch is for all possible event types.
+Where mask are event types from the enum <em>InotifyMask.IN_xxx</em>. These event elements are the same
+as provided in <em>/usr/include/sys/inotify.h</em>.</p>
+<p>Before calling get_events() there is one additionl attribute that can be set on an instance
+of Inotify which is a select timeout which defaults to 5 seconds.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">inotify</span><span class="o">.</span><span class="n">timeout</span>
+</pre></div>
+</div>
+<p>The timeout is passed down to <em>select()</em> which waits on the inotify file desriptor for events to provided.
+If its negative then the select will wait forever, if no events occur.
+Otherwise the select loop will break after the timeout. A value of zero causes select to return
+immediately. The default value should provide reasonable behaviour.</p>
+</section>
+<section id="mask-flags">
+<h2><span class="section-number">1.5. </span>Mask Flags<a class="headerlink" href="#mask-flags" title="Link to this heading">¶</a></h2>
+<p>You can get the full list of possible mask flags reading code, which has comments, or using:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pynotify</span><span class="w"> </span><span class="kn">import</span> <span class="n">InotifyMask</span><span class="p">,</span> <span class="n">Inotify</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">InotifyMask</span><span class="o">.</span><span class="n">mask_to_events</span><span class="p">(</span><span class="mh">0xFFFFFFFF</span><span class="p">):</span>
+     <span class="n">item</span>
+</pre></div>
+</div>
+<p>This currently outputs the following where we have manually added comments:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;InotifyMask.IN_ACCESS: 1&gt;              # File was accessed
+&lt;InotifyMask.IN_MODIFY: 2&gt;              # File was modified.
+&lt;InotifyMask.IN_ATTRIB: 4&gt;              # Metadata changed.
+&lt;InotifyMask.IN_CLOSE_WRITE: 8&gt;         # Writtable file was closed.
+&lt;InotifyMask.IN_CLOSE_NOWRITE: 16&gt;      # Unwrittable file closed.
+&lt;InotifyMask.IN_CLOSE: 24&gt;              # File closed
+&lt;InotifyMask.IN_OPEN: 32&gt;               # File was opened.
+&lt;InotifyMask.IN_MOVED_FROM: 64&gt;         # File was moved from X.
+&lt;InotifyMask.IN_MOVED_TO: 128&gt;          # File was moved to Y.
+&lt;InotifyMask.IN_MOVE: 192&gt;              # File was moved
+&lt;InotifyMask.IN_CREATE: 256&gt;            # Subfile was created.
+&lt;InotifyMask.IN_DELETE: 512&gt;            # Subfile was deleted.
+&lt;InotifyMask.IN_DELETE_SELF: 1024&gt;      # Self was deleted.
+&lt;InotifyMask.IN_MOVE_SELF: 2048&gt;        # Self was moved.
+&lt;InotifyMask.IN_UNMOUNT: 8192&gt;          # Backing fs was unmounted.
+&lt;InotifyMask.IN_Q_OVERFLOW: 16384&gt;      # Event queue overflowed.
+&lt;InotifyMask.IN_IGNORED: 32768&gt;         # File was ignored.
+&lt;InotifyMask.IN_ONLYDIR: 16777216&gt;      # Only watch the path if it is a directory.
+&lt;InotifyMask.IN_DONT_FOLLOW: 33554432&gt;  # Do not follow a sym link.
+&lt;InotifyMask.IN_EXCL_UNLINK: 67108864&gt;  # Exclude events on unlinked objects.
+&lt;InotifyMask.IN_MASK_CREATE: 268435456&gt; # Only create watches.
+&lt;InotifyMask.IN_MASK_ADD: 536870912&gt;    # Add to the mask of an already existing watch.
+&lt;InotifyMask.IN_ISDIR: 1073741824&gt;      # Event occurred against dir.
+&lt;InotifyMask.IN_ONESHOT: 2147483648&gt;    # Only send event once.
+&lt;InotifyMask.IN_ALL_EVENTS: 4095&gt;       # All events which that can be waited on.
+</pre></div>
+</div>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">pynotify</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">pynotify API Reference:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. pynotify</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">1.1. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#key-features">1.2. Key features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#recent-changes">1.3. Recent Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started">1.4. Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mask-flags">1.5. Mask Flags</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="python-api.html">2. API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Appendix.html">3. Appendix</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Pynotify Documentation</a></li>
+      <li>Next: <a href="python-api.html" title="next chapter"><span class="section-number">2. </span>API Reference</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/README.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

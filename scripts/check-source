@@ -5,14 +5,11 @@
 # Run in top level dir
 # 
 
-mod="pynotify"
+export PYTHONPATH=$(realpath ./src)
+mod="src/pynotify"
 
-echo "---"
-echo "code check"
-cd ./src
-PYTHONPATH=. pylint $mod/*py
-PYTHONPATH=. pycodestyle --max-line-length=110 $mod/*py
-
+pylint $mod/*py
+pycodestyle --max-line-length=110 $mod/*py
 mypy --check-untyped-defs --follow-untyped-imports $mod
 
 
