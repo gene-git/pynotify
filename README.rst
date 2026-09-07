@@ -22,6 +22,11 @@ Key features
 Recent Changes
 ==============
 
+**2.0.1**
+
+* Manual update
+* add missing py.typed to install
+
 **2.0.0**
 
 * meson / meson-python for build / package management

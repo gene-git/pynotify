@@ -5,5 +5,6 @@ py.install_sources(
     'inotify.py',
     'mask.py',
     'version.py',
+    'py.typed',
   subdir: 'pynotify'
 )

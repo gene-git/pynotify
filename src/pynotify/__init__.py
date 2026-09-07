@@ -4,5 +4,6 @@
 pynotify
 """
 from .inotify import Inotify
+from .inotify_base import InotifyBase
 from .mask import InotifyMask
 from .event import InotifyEvent

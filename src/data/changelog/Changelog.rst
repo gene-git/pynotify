@@ -6,14 +6,23 @@ Tags
 
 .. code-block:: text
 
-	1.2.1 (2024-03-29) -> 2.0.0 (2026-09-06)
-	35 commits.
+	1.2.1 (2024-03-29) -> 2.0.1 (2026-09-07)
+	36 commits.
 
 Commits
 =======
 
 
-* 2026-09-06  : **2.0.0**
+* 2026-09-07  : **2.0.1**
+
+.. code-block:: text
+
+              - **2.0.1**
+            
+                * Manual update
+                * add missing py.typed to install
+
+* 2026-09-06  : **2.0.0, origin/master**
 
 .. code-block:: text
 
