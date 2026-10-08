@@ -1,17 +1,20 @@
 -------------------------------------------------------
  Changelog    : pynotify
- Tags         : 1.6.2 ➙ 2.0.1
-              : 2025-11-01 ➙ 2026-09-07
+ Tags         : 1.7.0 ➙ 2.0.2
+              : 2026-01-04 ➙ 2026-10-08
               : 6 tags. See Docs for full changelog
 -------------------------------------------------------
 
- 2026-09-07   : 2.0.1
+ 2026-10-08   : 2.0.2
+              - 2.0.2 Documentation available on `readthedocs <https://pynotify.readthedocs.io>`
+
+ 2026-09-07   : 2.0.1, origin/master
               - **2.0.1**
             
                 * Manual update
                 * add missing py.typed to install
 
- 2026-09-06   : 2.0.0, origin/master
+ 2026-09-06   : 2.0.0
               - **2.0.0**
             
                 * meson / meson-python for build / package management
@@ -31,6 +34,3 @@
                 * Switch packaging from hatch to uv
  2025-11-01   ⋯
               - update Docs/Changelogs Docs/pynotify.pdf
-
- 2025-11-01   : 1.6.2
-              - Doc build: use xelatex which candle unicode characters

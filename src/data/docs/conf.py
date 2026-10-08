@@ -29,52 +29,58 @@ sys.path.insert(0, os.path.abspath("../../"))
 project = "pynotify"
 author = 'Gene C'
 latex_engine = 'xelatex'
-
 release = read_version()
-
+highlight_language = 'none'
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.imgconverter',
-    "hawkmoth",                  # Core Hawkmoth C-Autodoc engine
 ]
 
-primary_domain = 'c'
-hawkmoth_clang_c = [
-    "-std=c23",
-    "-Ilib",
-]
-
-# Tell Sphinx's code highlighter not to emit visible/literal unicode whitespace symbols
-# sphinx = baseline, tango = corp color, friendly - brighter, colorful - more so
-# Options: sphinx, friendly, tango
-pygments_style = 'sphinx'
-
+#
+# Latex
+#
 latex_elements = {
     'papersize': 'letterpaper',
-    'pointsize': '10pt',
+    'pointsize': '11pt',
+
+        'fvset': r'\fvset{fontsize=\scriptsize}',
+
+    'fontpkg': r'''
+        \usepackage{fontspec}
+
+        \setmainfont{Source Sans 3}[Ligatures=TeX]
+        \setsansfont{Source Sans 3}[Ligatures=TeX]
+        \setmonofont{Source Code Pro}
+    ''',
+
 
     'preamble': r'''
-        \usepackage{microtype}
         \usepackage{parskip}
-        \usepackage{needspace}
-        \usepackage{fontspec}
+
+        \setlength{\headheight}{14pt}
+        \addtolength{\topmargin}{-2pt}
+
+        \usepackage{enumitem}
+        \setlist[itemize]{
+            noitemsep,
+            topsep=6pt,
+            parsep=0pt,
+            partopsep=0pt,
+            after=\vspace{0pt}
+        }
+        \setlist[enumerate]{
+            noitemsep,
+            topsep=6pt,
+            parsep=0pt,
+            partopsep=0pt,
+            after=\vspace{0pt}
+        }
 
         \usepackage{newunicodechar}
         \newunicodechar{␣}{\textvisiblespace}
         \tracinglostchars=0
 
-        \makeatletter
-        \renewcommand{\subsection}[1]{\par\bigskip\needspace{14\baselineskip}\textbf{#1}}
-        %\renewcommand{\subsection}{\par\bigskip\needspace{14\baselineskip}}
-        \makeatother
-
         ''',
-
-    'fontpkg': r'''
-        \setmainfont{Fira Sans}           % Ultra-modern geometric sans font
-        \setsansfont{Fira Sans}
-        \setmonofont{Fira Mono}[ Scale=0.9] % Premium look for C function signatures
-    ''',
 
 }
 
@@ -89,3 +95,8 @@ latex_documents = [
         'manual'
     ),
 ]
+
+html_theme = 'sphinx_rtd_theme'
+html_static_path = ['_static']
+html_css_files = [ 'custom.css',]
+

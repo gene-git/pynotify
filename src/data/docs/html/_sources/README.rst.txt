@@ -7,7 +7,15 @@ pynotify
 Overview
 ========
 
-pynotify : Python inotify implementation built atop standard C-library.
+pynotify : Python inotify implementation built on the standard C-library.
+
+Documentation
+-------------
+
+The manual provides detailed information and is available in both HTML and PDF formats.
+Both are installed under */usr/share/pynotify/docs*.
+
+The manual is also available at: `readthedocs <https://pynotify.readthedocs.io>`_.
 
 Key features
 ============
@@ -18,20 +26,6 @@ Key features
   or download from https://www.sapience.com/tech. Add the key to your package builder gpg keyring.
   The key is included in the Arch package and the source= line with *?signed* at the end can be used
   to verify the git tag.  You can also manually verify the signature.
-
-Recent Changes
-==============
-
-**2.0.1**
-
-* Manual update
-* add missing py.typed to install
-
-**2.0.0**
-
-* meson / meson-python for build / package management
-* periodic code review
-* code cleanups and improvements.
 
 
 Getting Started

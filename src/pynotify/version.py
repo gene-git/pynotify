@@ -3,8 +3,8 @@
 """
 pynotify
 """
-__version__ = "2.0.1"
-__date__ = "2026-09-07"
+__version__ = "2.0.2"
+__date__ = "2026-10-08"
 __reldev__ = "release"
 
 

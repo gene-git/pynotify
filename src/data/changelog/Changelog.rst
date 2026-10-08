@@ -6,14 +6,20 @@ Tags
 
 .. code-block:: text
 
-	1.2.1 (2024-03-29) -> 2.0.1 (2026-09-07)
-	36 commits.
+	1.2.1 (2024-03-29) -> 2.0.2 (2026-10-08)
+	37 commits.
 
 Commits
 =======
 
 
-* 2026-09-07  : **2.0.1**
+* 2026-10-08  : **2.0.2**
+
+.. code-block:: text
+
+              - 2.0.2 Documentation available on `readthedocs <https://pynotify.readthedocs.io>`
+
+* 2026-09-07  : **2.0.1, origin/master**
 
 .. code-block:: text
 
@@ -22,7 +28,7 @@ Commits
                 * Manual update
                 * add missing py.typed to install
 
-* 2026-09-06  : **2.0.0, origin/master**
+* 2026-09-06  : **2.0.0**
 
 .. code-block:: text
 

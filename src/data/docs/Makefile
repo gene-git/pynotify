@@ -9,14 +9,14 @@ SPHINXBUILD   ?= sphinx-build
 SOURCEDIR     = .
 BUILDDIR      = _build
 
-SOURCES = conf.py ../../version.txt index.rst README.rst python-api.rst \
+SOURCES = conf.py ../../version.txt Makefile index.rst README.rst Appendix.rst python-api.rst \
 		  ../../pynotify/inotify_base.py \
 		  ../../pynotify/inotify.py \
 		  ../../pynotify/mask.py \
 		  ../../pynotify/event.py 
 
 
-.PHONY: help Makefile clean html latexpdf
+.PHONY: help clean html latexpdf
 
 html: $(BUILDDIR)/html/index.html
 latexpdf: $(PKG).pdf
@@ -26,8 +26,8 @@ help:
 
 $(BUILDDIR)/html/index.html: $(SOURCES)
 	@$(SPHINXBUILD) -b html "$(SOURCEDIR)" "$(BUILDDIR)/html" $(SPHINXOPTS) $(O)
-	@$(SPHINXBUILD) -b html "$(SOURCEDIR)" "$(BUILDDIR)/html" $(SPHINXOPTS) $(O)
 	@rsync -av _build/html .
+	@touch  _build/html/index.html
 	@echo "HTML doc build complete. Path: $@"
 
 $(PKG).pdf: $(SOURCES)
@@ -36,6 +36,7 @@ $(PKG).pdf: $(SOURCES)
 	$(MAKE) -C "$(BUILDDIR)/latex" all-pdf LATEXOPTS="-interaction=nonstopmode" PDFLATEX=xelatex
 	$(MAKE) -C "$(BUILDDIR)/latex" all-pdf LATEXOPTS="-interaction=nonstopmode" PDFLATEX=xelatex
 	@rsync -av _build/latex/$(PKG).pdf .
+	@touch $(PKG).pdf
 	@echo "PDF doc build complete. Path: $@"
 
 clean:
